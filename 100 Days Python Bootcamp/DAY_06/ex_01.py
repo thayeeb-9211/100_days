@@ -10,3 +10,6 @@ while hungry:
     eating()
     if still_hungry == randint(1,6):
         hungry = False
+        
+        
+#sdfodifgaodgomgviojrc
