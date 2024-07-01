@@ -16,9 +16,178 @@
 
 
 
-from art import logo
-print(logo)
+## The deck is unlimited in size. 
+## There are no jokers. 
+## The Jack/Queen/King all count as 10.
+## The the Ace can count as 11 or 1.
+## Use the following list as the deck of cards:
+## cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+## The cards in the list have equal probability of being drawn.
+## Cards are not removed from the deck as they are drawn.
+## The computer is the dealer.
 
+
+
+# import random
+# from art import logo
+
+# def cards_deck():
+#   """Returns a single random card from the deck."""
+#   cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+#   card = random.choice(cards)
+#   return card
+
+# def score(cards):
+#   """Take a list of cards and return the score calculated from the cards."""
+#   score = sum(cards)
+
+#   # Check for a blackjack (a hand with only 2 cards: an ace and a 10-value card)
+#   if score == 21 and len(cards) == 2:
+#       return 0 #means blackjack
+
+#   # Adjust for aces if the score is over 21
+#   if 11 in cards and score > 21:
+#       cards[cards.index(11)] = 1
+#       score = sum(cards)
+
+#   return score
+
+# def compare(user_score, computer_score):
+#   #compariation If user and the computer are both over 21, user lose.
+#   if user_score > 21 and computer_score > 21:
+#     return "You went over. You lose 😤"
+
+#   if user_score == computer_score:
+#     return "Draw 🙃"
+#   elif computer_score == 0:
+#     return "Lose, opponent has Blackjack 😱"
+#   elif user_score == 0:
+#     return "Win with a Blackjack 😎"
+#   elif user_score > 21:
+#     return "You went over. You lose 😭"
+#   elif computer_score > 21:
+#     return "Opponent went over. You win 😁"
+#   elif user_score > computer_score:
+#     return "You win 😃"
+#   else:
+#     return "You lose 😤"
+
+# def game_starts():
+#   """Users and computers cards are randomized list."""
+#   user_cards = []
+#   computer_cards = []
+#   game_over = False
+  
+#   for _ in range(2):
+#     user_cards.append(cards_deck())
+#     computer_cards.append(cards_deck())
+    
+#   while not game_over:
+#     user_score = score(user_cards)
+#     computer_score = score(computer_cards)
+#     print(f"   Your cards: {user_cards}, current score: {user_score}")
+#     print(f"   Computer's first card: {computer_cards[0]}")
+
+#     if user_score == 0 or computer_score == 0 or user_score > 21:
+#       game_over = True
+#     else:
+#       user_should_deal = input("Type 'y' to get another card, type 'n' to pass: ")
+#       if user_should_deal == "y":
+#         user_cards.append(cards_deck())
+#       else:
+#         game_over = True
+
+#   while computer_score != 0 and computer_score < 17:
+#     computer_cards.append(cards_deck())
+#     computer_score = score(computer_cards)
+
+#   print(f"   Your final hand: {user_cards}, final score: {user_score}")
+#   print(f"   Computer's final hand: {computer_cards}, final score: {computer_score}")
+#   print(compare(user_score, computer_score))
+
+# ask_user = True
+# while ask_user:
+#   print(logo)
+#   player = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+#   if player =='y':
+#     game_starts()
+#   elif player == 'n':
+#     print("See you next time. Good-bye..!")
+#   else:
+#     ask_user = True
+
+
+  
+import random
+from art import logo
+
+def cards_deck():
+    return random.choice([11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10])
+"Returns a single random card from the deck."
+
+def score_calculation(cards):
+    total = sum(cards)
+    "Check for a blackjack (hand with only 2 cards: an ace and a 10-value card)"
+    if total == 21 and len(cards) == 2:
+        return 0
+    "Adjust for aces if the score is over 21"
+    if total > 21 and 11 in cards:
+        cards[cards.index(11)] = 1
+        total = sum(cards)
+    return total
+
+def comparization(user_score, computer_score):
+    if user_score > 21 and computer_score > 21:
+        return "You went over. You lose 😤"
+    elif user_score == computer_score:
+        return "Draw 🙃"
+    elif computer_score == 0:
+        return "Lose, opponent has Blackjack 😱"
+    elif user_score == 0:
+        return "Win with a Blackjack 😎"
+    elif user_score > 21:
+        return "You went over. You lose 😭"
+    elif computer_score > 21:
+        return "Opponent went over. You win 😁"
+    elif user_score > computer_score:
+        return "You win 😃"
+    return "You lose 😤"
+
+def game_starts():
+    user_cards = []
+    computer_cards = []
+  
+    for two in range(2):
+       user_cards.append(cards_deck())
+       computer_cards.append(cards_deck())
+    # the "walrus operator" (:=) allows you to assign a value to a variable as part of an expression.
+    while (user_score := score_calculation(user_cards)) != 0 and user_score <= 21:
+        print(f"   Your cards: {user_cards}, current score: {user_score}")
+        print(f"   Computer's first card: {computer_cards[0]}")
+      
+        if input("Type 'y' to hit, type 'n' to stay: ") == 'y':
+            user_cards.append(cards_deck())
+        else:
+            break
+
+    while (computer_score := score_calculation(computer_cards)) < 17:
+        computer_cards.append(cards_deck())
+        computer_score = score_calculation(computer_cards)
+
+    print(f"   Your final hand: {user_cards}, final score: {user_score}")
+    print(f"   Computer's final hand: {computer_cards}, final score: {computer_score}")
+    print(comparization(user_score, computer_score))
+
+ask_user = True
+while ask_user:
+  print(logo)
+  player = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+  if player =='y':
+    game_starts()
+  elif player == 'n':
+    print("\nSee you next time. Good-bye..!")
+  else:
+    ask_user = True
 
 
 

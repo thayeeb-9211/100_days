@@ -1,4 +1,3 @@
-import clear
 from art import logo
 
 def add(n1, n2):
@@ -39,7 +38,6 @@ def calculator():
       num1 = answer
     else:
       should_continue = False
-      clear()
       calculator()
 
 calculator()
