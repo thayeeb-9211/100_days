@@ -11,7 +11,6 @@ class User:
         user.followers +=1
 
 
-
 user1 = User(1, 'Vic')
 user2 = User(2, 'Bob')
 print(user1, user1.id, user1.name, user1.followers)
