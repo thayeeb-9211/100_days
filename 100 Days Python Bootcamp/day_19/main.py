@@ -44,8 +44,7 @@ class RaceTurtles:
 screen = Screen()
 screen.setup(width=500, height=400)
 screen.title("Turtle Racers")
-bet_choice = screen.textinput(title="Make your bet", prompt="Which turtle "
-                                                            "will win the race? Enter a color: ")
+bet_choice = screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ")
 race = RaceTurtles()
 race.race()
 if bet_choice == race.winner:
@@ -54,3 +53,8 @@ else:
     screen.textinput(title="Sorry", prompt=f"You lose, the winner was {race.winner}")
 
 screen.exitonclick()
+
+
+
+
+
