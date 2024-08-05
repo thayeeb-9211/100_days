@@ -23,7 +23,7 @@ Welcome to the "100 Days of Python Programming" challenge! This challenge is des
 
 1. **Clone the Repository**: Start by cloning this repository to your local machine using the following command:
     ```bash
-    git clone https://github.com/your-username/100-days-of-python-programming.git
+    (https://github.com/thayeeb-9211/100_days.git)
     ```
 
 2. **Follow the Daily Instructions**: Each day has a dedicated folder with instructions, code templates, and resources. Follow the instructions provided in the `README.md` file within each day's folder.
